@@ -53,10 +53,41 @@ def Octant2(xa , ya , xb , yb ):
 		y = y +1
 	return liste
 
+def Bresenham (xa , ya , xb , yb) :
+	dx = xb - xa
+	dy = yb - ya
+	if dx >= 0 :
+		if dy >= 0:
+			if dx > dy :
+				#octant 1
+				Octant1(xa, ya, xb, yb)
+			elif dx <= dy :
+				#octant 2
+				Octant2(xa, ya, xb, yb)
+		elif dy < 0 :
+			if dx < abs(dy):
+				#octant 7
+				Octant2(xa, ya, xb, yb)
+			elif dx >= abs(dy) :
+				#octant 8
+				Octant1(xa, ya, xb, yb)
+	elif dx < 0 :
+		if dy >=0 :
+			#octant 3
+			if abs(dx) < dy :
+				Octant2(xa, ya, xb, yb)
+			else :
+			#octant4
+				Octant1(xa, ya, xb, yb)
+		else :
+			#octant5
+			if abs(dx) > abs(dy):
+				Octant1(xa, ya, xb, yb)
+			#octant6
+			else :
+				Octant2(xa, ya, xb, yb)
+				
 	
-
-
-
 
 if __name__ == '__main__':
     root = tk.Tk()
@@ -80,8 +111,8 @@ if __name__ == '__main__':
     rect = canva.create_rectangle(xviewport, yviewport, DimxV+xviewport,DimyV+yviewport, fill="white", outline="blue", width=5)#viewport
 
     #l_naif = segment_naif(0,0,20,20,0,0.5)
-    l_Octant1 = Octant2(25,40,50,50)
-    l_Octant2 = Octant1(25,40,50,50)
+    l_Octant1 = Octant1(25,40,50,50)
+    l_Octant2 = Octant2(25,40,50,50)
     #pour iterer deux listes en meme temps de meme taille utiliser zip
     for el in l_Octant1   :
         tran=transformation(xviewport,yviewport,DimxV,DimyV,dimxw,dimyw,xwindow,ywindow,el[0],el[1])
