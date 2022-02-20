@@ -2,6 +2,25 @@
 import tkinter as tk
 import math
 from unittest import * 
+
+"""
+pour la multiplication des matrices , on peut utiliser la bib numpy 
+exemple
+	import numpy as np
+	A = np.array([[1,2,0],[4,3,-1]])
+	A.shape #renvoie les dimensioons de la matrice
+	(2, 3)
+	B = np.array([[5,1],[2,3],[3,4]])#transforme en type array
+	B.shape
+	(3, 2)
+	C = A.dot(B) #fait la multiplication 
+	C
+	array([[ 9,  7],
+       [23,  9]])
+       """
+       
+       
+
 def multiplication(m1,m2):
 	"""
 	multiplication de deux matrices
