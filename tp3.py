@@ -5,7 +5,8 @@ from tp1 import projection
 from tp2 import projection
 
 LA, HA = 1000, 800
-
+cli, i = 0, 0
+liste = []
 
 def point(px, py, pcoul,canva):
     """
@@ -88,8 +89,7 @@ def bezier_Algo(xA, yA, xB, yB, xC, yC, xD, yD , N, canva):
         pt = barycentre(xa, ya, xb, yb, xc, yc, xd, yd, t)
         point(pt[0], pt[1], "black", canva)
         t = t + pas
-cli = 0
-liste = []
+
 
 def clic(event):
     """ Gestion de l'événement clic gauche sur la zone graphique """
@@ -103,10 +103,13 @@ def clic(event):
     liste.append(Y)
 
     if (cli % 4) == 0 :
+        cli = cli + 1
         pas = 1 / 100 # 1 / N pour savoir on fait varier t de combien ( selon le nombre N saisie par l utilisateur )
         t = 0
-        xa, ya, xb, yb, xc, yc, xd, yd = liste[0],liste[1], liste[2], liste[3], liste[4], liste[5], liste[6], liste[7]
+        xa, ya, xb, yb, xc, yc, xd, yd = liste[0], liste[1], liste[2], liste[3], liste[4], liste[5], liste[6], liste[7]
         liste = []
+        liste.append(xd)
+        liste.append(yd)
         canva.create_oval(xa+3, ya, xa+3, ya, fill = "green" )
         canva.create_oval(xb+3, yb, xb+3, yb, fill = "green" )
         canva.create_oval(xc+3, yc, xc+3, yc, fill = "green" )
